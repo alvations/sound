@@ -44,3 +44,42 @@ soundsgood/                     Top-level package
               karaoke.py
               ...
 ```
+
+# Try 1: Testing `__init__.py` for `soundsgood.filters.karaoke`
+
+This is the first try, the `soundsgood.__init__.py` looks like this.
+
+```python
+from soundsgood import filters
+```
+
+and `soundsgood/filters/__init__.py` looks like this:
+
+```python
+from soundsgood.filters import karaoke
+```
+
+And after running `
+
+```
+cd && yes | python3 -m pip uninstall soundsgood && cd /path/to/soundsgood/ && python3 setup.py install --force && cd 
+python3 -c "import soundsgood"
+```
+
+[out]:
+
+```
+WARNING: Skipping soundsgood as it is not installed.
+
+Finished processing dependencies for soundsgood==0.0.1
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<frozen zipimport>", line 259, in load_module
+  File "/usr/local/lib/python3.9/site-packages/soundsgood-0.0.1-py3.9.egg/soundsgood/__init__.py", line 2, in <module>
+ImportError: cannot import name 'filters' from 'soundsgood' (/usr/local/lib/python3.9/site-packages/soundsgood-0.0.1-py3.9.egg/soundsgood/__init__.py)
+```
+
+### And yes, as expected it's *kaputt*... 
+
+# Try 2:
