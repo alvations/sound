@@ -120,3 +120,68 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.9/site-packages/soundsgood-0.0.1-py3.9.egg/soundsgood/__init__.py", line 2, in <module>
 ModuleNotFoundError: No module named 'soundsgood.filters'
 ```
+
+# Try 3: Use absolute imports + `setuptools`, forget about `distutils`
+
+After some more digging, I found solution 3 from https://stackoverflow.com/a/28154841/610569 
+
+In [f738af](https://github.com/alvations/soundsgood/commit/f738af3381a8136eb7d65331266fcca5f3120580), we're going back to the `__init__.py`, and we use absolute imports: 
+
+`soundsgood/__init__.py`:
+
+```python
+from soundsgood import filters
+```
+
+`soundsgood/filters/__init__.py`:`
+
+```python
+from soundsgood.filters import *
+```
+
+**AND** in the setup.py, use `setuptools.find_packages()`:
+
+```
+from setuptools import setup, find_packages
+
+
+setup(
+  name = 'soundsgood',
+  packages = find_packages(),
+  version = '0.0.2',
+  description = "Cos I don't think https://docs.python.org/3/tutorial/modules.html#packages is at all sound...",
+  url = 'https://github.com/alvations/soundsgood',
+)
+```
+
+Voila!! It worked!
+
+[out]:
+
+```
+cd && yes | python3 -m pip uninstall soundsgood && cd git-stuff/soundsgood/ && python3 setup.py install --force && cd
+python3 -c "import soundsgood; from soundsgood.filters.karaoke import teo_heng; teo_heng()"
+
+Found existing installation: soundsgood 0.0.1
+Uninstalling soundsgood-0.0.1:
+  Would remove:
+    /usr/local/lib/python3.9/site-packages/soundsgood-0.0.1-py3.9.egg
+Proceed (y/n)?   Successfully uninstalled soundsgood-0.0.1
+
+
+Processing soundsgood-0.0.2-py3.9.egg
+Copying soundsgood-0.0.2-py3.9.egg to /usr/local/lib/python3.9/site-packages
+Adding soundsgood 0.0.2 to easy-install.pth file
+
+Installed /usr/local/lib/python3.9/site-packages/soundsgood-0.0.2-py3.9.egg
+Processing dependencies for soundsgood==0.0.2
+Finished processing dependencies for soundsgood==0.0.2
+
+
+Teo Heng KTV is committed to provide the very budget platform for all karaoke lovers to enjoy the highest quality karaoke system. Our No Alchohol, No Smoking, No Frills policies are to promote healthy and green karaoke culture among every generation.
+...
+
+
+
+
+```
