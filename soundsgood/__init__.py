@@ -1,2 +1,2 @@
 
-from soundsgood import filters
+import soundsgood.filters
