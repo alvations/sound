@@ -47,7 +47,7 @@ soundsgood/                     Top-level package
 
 # Try 1: Testing `__init__.py` for `soundsgood.filters.karaoke`
 
-This is the first try, the `soundsgood.__init__.py` looks like this.
+This is the first try (https://github.com/alvations/soundsgood/commit/19d66c45f22eac2300c8a0ade5ac674d343d2be1), the `soundsgood.__init__.py` looks like this.
 
 ```python
 from soundsgood import filters
