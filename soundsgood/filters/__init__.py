@@ -1,2 +1,2 @@
 
-from soundsgood.filters import karaoke
+from soundsgood.filters import * 
