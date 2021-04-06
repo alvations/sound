@@ -82,4 +82,41 @@ ImportError: cannot import name 'filters' from 'soundsgood' (/usr/local/lib/pyth
 
 ### And yes, as expected it's *kaputt*... 
 
-# Try 2:
+# Try 2: Try simply importing `import soundsgood.filters` in top-level `__init__.py`
+
+Undoing the last edit on the top-level `soundsgood/__init__.py` and simply doing ([0d78465](https://github.com/alvations/soundsgood/commit/0d784659f537d7905edb81056d2820ee880678aa)):
+
+```python
+import soundsgood.filters
+```
+
+And running `cd && yes | python3 -m pip uninstall soundsgood && cd /path/to/soundsgood/ && python3 setup.py install --force && cd  && python3 -c "import soundsgood"`
+
+### Of course, it kaputt-ed again! 
+
+[out]:
+
+```
+ % cd && yes | python3 -m pip uninstall soundsgood && cd git-stuff/soundsgood/ && python3 setup.py install --force && cd
+python3 -c "import soundsgood"
+Found existing installation: soundsgood 0.0.1
+Uninstalling soundsgood-0.0.1:
+  Would remove:
+    /usr/local/lib/python3.9/site-packages/soundsgood-0.0.1-py3.9.egg
+Proceed (y/n)?   Successfully uninstalled soundsgood-0.0.1
+
+...
+
+Processing soundsgood-0.0.1-py3.9.egg
+Copying soundsgood-0.0.1-py3.9.egg to /usr/local/lib/python3.9/site-packages
+Adding soundsgood 0.0.1 to easy-install.pth file
+
+Installed /usr/local/lib/python3.9/site-packages/soundsgood-0.0.1-py3.9.egg
+Processing dependencies for soundsgood==0.0.1
+Finished processing dependencies for soundsgood==0.0.1
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<frozen zipimport>", line 259, in load_module
+  File "/usr/local/lib/python3.9/site-packages/soundsgood-0.0.1-py3.9.egg/soundsgood/__init__.py", line 2, in <module>
+ModuleNotFoundError: No module named 'soundsgood.filters'
+```
