@@ -1,4 +1,4 @@
-# sound
+# soundsgood
 Cos I don't think https://docs.python.org/3/tutorial/modules.html#packages is at all sound...
 
 
@@ -17,10 +17,10 @@ After quite a painful hours of Google + Stackoverflowing, the results point to:
 - https://docs.python.org/3/reference/import.html#__path__
 - https://docs.python.org/3/tutorial/modules.html#packages
 
-Although the last link in the bullet above looks "sound", I've tried an hour worth of variation of how to write the `__init__.py` files and I'm giving up so I made this repo to replicate and hopefully document what really should be in the `___init__.py` files from the https://docs.python.org/3/tutorial/modules.html#packages tutorial given the following file structure:
+Although the last link in the bullet above looks "sound", I've tried an hour worth of variation of how to write the `__init__.py` files and I'm giving up so I made this repo to replicate the tutorial and hopefully document what really should be in the `___init__.py` files from the https://docs.python.org/3/tutorial/modules.html#packages tutorial given the following file structure:
 
 ```
-sound/                          Top-level package
+soundsgood/                     Top-level package
       __init__.py               Initialize the sound package
       formats/                  Subpackage for file format conversions
               __init__.py
